@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import './App.css'
 import { Stage, Layer, Rect, Text, Image } from 'react-konva'
 import Konva from 'konva'
-import { ReactComponent as Pattern } from './covid.svg'
+import { ReactComponent as Pattern } from './drink.svg'
 import Logo from './logo.svg'
 import useImage from 'use-image'
 import ReactDOMServer from 'react-dom/server'
@@ -12,6 +12,7 @@ import svgToMiniDataURI from 'mini-svg-data-uri'
 import { css } from 'glamor'
 import htmlToImage from 'html-to-image'
 import Upload from './components/Upload'
+import { v4 as uuid } from 'uuid'
 
 
 function ModifiedSVG(props) {
@@ -19,30 +20,37 @@ function ModifiedSVG(props) {
 
   const svgRef = useRef()
 
-  function setFill(node) {
+  const setFill = node => color =>  {
     node.childNodes.forEach(node => {
-      console.log(node.style.fill)
-      if(node.style.fill !== null) {
-        node.style.fill = `${color.foreground}`
-        if (node.childNodes.length > 0) {
-          setFill(node)
+      Object.entries(color).forEach(([key, value]) => {
+        if(key === node.dataset.swatchId) {
+          node.style.fill = value
+          if(node.childNodes.length > 0) {
+            setFill(node)(color)
+          }
         }
-      }
+      })
     })
   }
 
-  function generateSwatches(node, cnt) {
-    let count = cnt || 0
+  function generateRandomColor() {
+    return `#${Math.floor(Math.random()*16777215).toString(16)}`
+  }
+
+  function generateSwatches(node) {
     node.childNodes.forEach(node => {
       if(node.style.fill !== null) {
+        const id =  uuid()
+        node.dataset.swatchId = id
+        console.log(node)
         setPatternColors(state => {
           return {
             ...state,
-            [`color${count++}`]: node.style.fill
+            [id]: generateRandomColor()
           }
         })
         if (node.childNodes.length > 0) {
-          generateSwatches(node, count)
+          generateSwatches(node)
         }
       }
     })
@@ -50,7 +58,10 @@ function ModifiedSVG(props) {
 
   useEffect(() => {
     generateSwatches(svgRef.current)
-    // setFill(svgRef.current)
+  }, [])
+
+  useEffect(() => {
+    setFill(svgRef.current)(color)
     setSvg(svgRef.current)
   }, [svgRef, color])
 
