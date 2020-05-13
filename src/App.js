@@ -1,17 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './App.css'
-import { Stage, Layer, Rect, Text, Image } from 'react-konva'
+import {
+  Stage,
+  Layer,
+  Rect,
+  Text,
+  Image as KonvaImage,
+  Shape,
+  Group
+} from 'react-konva'
 import Konva from 'konva'
 import { ReactComponent as Pattern } from './i-like-food.svg'
 import Logo from './logo.svg'
 import useImage from 'use-image'
-import ReactDOMServer from 'react-dom/server'
 import Swatch from './components/Swatch'
-import { ReactSVG } from 'react-svg'
-import svgToMiniDataURI from 'mini-svg-data-uri'
-import { css } from 'glamor'
+import part from './tshirt-round-neck-men/mesh/front.png'
+import onepiece from './art-10.jpg'
 import htmlToImage from 'html-to-image'
-import Upload from './components/Upload'
 import { v4 as uuid } from 'uuid'
 
 function generateRandomColor() {
@@ -41,7 +46,6 @@ function ModifiedSVG(props) {
       if (node.style.fill !== null) {
         const id = uuid()
         node.dataset.swatchId = id
-        console.log(node)
         setPatternColors((state) => {
           return {
             ...state,
@@ -73,14 +77,42 @@ function ModifiedSVG(props) {
   )
 }
 
+function PartsImage({ base }) {
+  console.log("PartsImage -> base", base)
+  const [image2, setImage2] = useState()
+  console.log("PartsImage -> image2", image2)
+  const shirt = new Image()
+  shirt.src = part
+  const back = new Image()
+  back.src = onepiece
+
+  return (
+    <Group>
+      <Shape
+        sceneFunc={(ctx, image) => {
+          ctx.drawImage(shirt, 0, 0)
+          ctx.globalCompositeOperation = 'source-in'
+          ctx.drawImage(back, -image.x(), -image.y())
+        }}
+        hitFunc={(ctx, image) => {
+          ctx.rect(0, 0, shirt.width, shirt.height)
+          ctx.fillStrokeShape(image)
+        }}
+        draggable
+      />
+
+    </Group>
+  )
+}
+
 function App() {
   const [patternColors, setPatternColors] = useState({
     background: generateRandomColor()
   })
-  console.log('App -> patternColors', patternColors)
 
   const [svg, setSvg] = useState()
   const [pic, setPic] = useState()
+  const base = useRef()
 
   useEffect(() => {
     if (svg) {
@@ -92,6 +124,7 @@ function App() {
   }, [svg, patternColors])
 
   const [image] = useImage(pic)
+  const [onepieceImage] = useImage(onepiece)
 
   // const onChangeCompleteHandler = (color) => {
   //   setColor(color.hex)
@@ -109,8 +142,19 @@ function App() {
 
   return (
     <div className='App'>
-      <Stage width={window.innerWidth / 1.5} height={window.innerHeight / 1.5}>
+      <Stage width={window.innerWidth / 2} height={window.innerHeight / 2}>
         <Layer>
+          <KonvaImage
+            image={onepieceImage}
+            opacity={0.05}
+          />
+        </Layer>
+        <Layer>
+          <PartsImage />
+        </Layer>
+      </Stage>
+      <Stage width={window.innerWidth / 2} height={window.innerHeight / 2}>
+        <Layer ref={base}>
           <Rect
             width={window.innerWidth / 1.5}
             height={window.innerHeight / 1.5}
@@ -130,7 +174,7 @@ function App() {
           )
         })}
       </div>
-      <div style={{ opacity: '0',  position: 'absolute', zIndex: '-100' }}>
+      <div style={{ opacity: '0', position: 'absolute', zIndex: '-100' }}>
         <ModifiedSVG
           setSvg={setSvg}
           color={patternColors}
