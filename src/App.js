@@ -82,7 +82,6 @@ function App() {
 
   const [svg, setSvg] = useState()
   const [pic, setPic] = useState()
-  const base = useRef()
 
   useEffect(() => {
     if (svg) {
@@ -124,7 +123,7 @@ function App() {
         </Layer>
       </Stage>
       <Stage width={window.innerWidth / 2} height={window.innerHeight / 2}>
-        <Layer ref={base}>
+        <Layer clearBeforeDraw>
           <Rect
             width={window.innerWidth / 1.5}
             height={window.innerHeight / 1.5}
