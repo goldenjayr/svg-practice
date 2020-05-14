@@ -4,20 +4,18 @@ import {
   Stage,
   Layer,
   Rect,
-  Text,
   Image as KonvaImage,
-  Shape,
-  Group
 } from 'react-konva'
 import Konva from 'konva'
 import { ReactComponent as Pattern } from './i-like-food.svg'
 import Logo from './logo.svg'
 import useImage from 'use-image'
 import Swatch from './components/Swatch'
-import part from './tshirt-round-neck-men/mesh/front.png'
-import onepiece from './art-10.jpg'
 import htmlToImage from 'html-to-image'
 import { v4 as uuid } from 'uuid'
+import ShirtComponent from './components/ShirtComponent'
+import onepiece from './onepiece.jpg'
+
 
 function generateRandomColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`
@@ -77,34 +75,6 @@ function ModifiedSVG(props) {
   )
 }
 
-function PartsImage({ base }) {
-  console.log("PartsImage -> base", base)
-  const [image2, setImage2] = useState()
-  console.log("PartsImage -> image2", image2)
-  const shirt = new Image()
-  shirt.src = part
-  const back = new Image()
-  back.src = onepiece
-
-  return (
-    <Group>
-      <Shape
-        sceneFunc={(ctx, image) => {
-          ctx.drawImage(shirt, 0, 0)
-          ctx.globalCompositeOperation = 'source-in'
-          ctx.drawImage(back, -image.x(), -image.y())
-        }}
-        hitFunc={(ctx, image) => {
-          ctx.rect(0, 0, shirt.width, shirt.height)
-          ctx.fillStrokeShape(image)
-        }}
-        draggable
-      />
-
-    </Group>
-  )
-}
-
 function App() {
   const [patternColors, setPatternColors] = useState({
     background: generateRandomColor()
@@ -150,7 +120,7 @@ function App() {
           />
         </Layer>
         <Layer>
-          <PartsImage />
+          <ShirtComponent />
         </Layer>
       </Stage>
       <Stage width={window.innerWidth / 2} height={window.innerHeight / 2}>
