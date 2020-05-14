@@ -67,30 +67,30 @@ export default function PartsImage({ base }) {
 
 
   return (
-      // <Shape
-      //   ref={imageRef}
-
-      //   sceneFunc={(ctx, image) => {
-
-      //     ctx.drawImage(shirt, 0,0)
-
-      //     // const imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height).data
-      //     ctx.globalCompositeOperation = 'source-in'
-      //     ctx.drawImage(back, -image.x(), -image.y())
-
-      //   }}
-      //   hitFunc={(ctx, image) => {
-      //     ctx.rect(0, 0, shirt.width, shirt.height)
-      //     ctx.fillStrokeShape(image)
-      //   }}
-      //   draggable
-      // />
-      <KonvaImage
-        image={image}
+      <Shape
         ref={imageRef}
-        filters={[Konva.Filters.Blur]}
-        blurRadius={10}
+
+        sceneFunc={(ctx, image) => {
+
+          ctx.drawImage(shirt, 0,0)
+
+          // const imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height).data
+          ctx.globalCompositeOperation = 'source-in'
+          ctx.drawImage(back, -image.x(), -image.y())
+
+        }}
+        hitFunc={(ctx, image) => {
+          ctx.rect(0, 0, shirt.width, shirt.height)
+          ctx.fillStrokeShape(image)
+        }}
         draggable
       />
+      // <KonvaImage
+      //   image={image}
+      //   ref={imageRef}
+      //   filters={[Konva.Filters.Blur]}
+      //   blurRadius={10}
+      //   draggable
+      // />
   )
 }
