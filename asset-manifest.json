@@ -1,26 +1,25 @@
 {
   "files": {
     "main.css": "/svg-practice/static/css/main.d1b05096.chunk.css",
-    "main.js": "/svg-practice/static/js/main.5c5bb3e0.chunk.js",
-    "main.js.map": "/svg-practice/static/js/main.5c5bb3e0.chunk.js.map",
+    "main.js": "/svg-practice/static/js/main.11974b78.chunk.js",
+    "main.js.map": "/svg-practice/static/js/main.11974b78.chunk.js.map",
     "runtime-main.js": "/svg-practice/static/js/runtime-main.268af8d7.js",
     "runtime-main.js.map": "/svg-practice/static/js/runtime-main.268af8d7.js.map",
-    "static/js/2.daf82347.chunk.js": "/svg-practice/static/js/2.daf82347.chunk.js",
-    "static/js/2.daf82347.chunk.js.map": "/svg-practice/static/js/2.daf82347.chunk.js.map",
+    "static/js/2.50c943f3.chunk.js": "/svg-practice/static/js/2.50c943f3.chunk.js",
+    "static/js/2.50c943f3.chunk.js.map": "/svg-practice/static/js/2.50c943f3.chunk.js.map",
     "index.html": "/svg-practice/index.html",
-    "precache-manifest.57a5a2dfa08fa74c1f5bcac8b80cfb6b.js": "/svg-practice/precache-manifest.57a5a2dfa08fa74c1f5bcac8b80cfb6b.js",
+    "precache-manifest.be6658cc6308f3338a8f743f5d839134.js": "/svg-practice/precache-manifest.be6658cc6308f3338a8f743f5d839134.js",
     "service-worker.js": "/svg-practice/service-worker.js",
     "static/css/main.d1b05096.chunk.css.map": "/svg-practice/static/css/main.d1b05096.chunk.css.map",
-    "static/js/2.daf82347.chunk.js.LICENSE.txt": "/svg-practice/static/js/2.daf82347.chunk.js.LICENSE.txt",
-    "static/media/art-10.jpg": "/svg-practice/static/media/art-10.ea49168b.jpg",
-    "static/media/front.png": "/svg-practice/static/media/front.e1aa5e34.png",
+    "static/js/2.50c943f3.chunk.js.LICENSE.txt": "/svg-practice/static/js/2.50c943f3.chunk.js.LICENSE.txt",
     "static/media/i-like-food.5994ea68.svg": "/svg-practice/static/media/i-like-food.5994ea68.svg",
-    "static/media/logo.svg": "/svg-practice/static/media/logo.5d5d9eef.svg"
+    "static/media/logo.svg": "/svg-practice/static/media/logo.5d5d9eef.svg",
+    "static/media/onepiece.jpg": "/svg-practice/static/media/onepiece.c8042111.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.268af8d7.js",
-    "static/js/2.daf82347.chunk.js",
+    "static/js/2.50c943f3.chunk.js",
     "static/css/main.d1b05096.chunk.css",
-    "static/js/main.5c5bb3e0.chunk.js"
+    "static/js/main.11974b78.chunk.js"
   ]
 }
