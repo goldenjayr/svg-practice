@@ -112,12 +112,12 @@ function App() {
   return (
     <div className='App'>
       <Stage width={window.innerWidth / 2} height={window.innerHeight / 2}>
-        <Layer>
+        {/* <Layer>
           <KonvaImage
             image={onepieceImage}
             opacity={0.05}
           />
-        </Layer>
+        </Layer> */}
         <Layer>
           <ShirtComponent />
         </Layer>
