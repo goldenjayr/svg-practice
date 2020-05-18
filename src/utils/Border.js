@@ -1,3 +1,7 @@
+
+import onepiece from '../onepiece.jpg'
+const background = new Image()
+background.src = onepiece
 // now we will define our border filter
 
 var canvas = document.createElement('canvas');
@@ -23,7 +27,7 @@ export function Border(imageData) {
   console.log("Border -> imageData", imageData)
   var nPixels = imageData.data.length;
   var size = this.getAttr('borderSize') || 0;
-
+  debugger
   // - first set correct dimensions for canvases
   canvas.width = imageData.width;
   canvas.height = imageData.height;
@@ -85,6 +89,8 @@ export function Border(imageData) {
 
   // draw resulted image (original + shadow without opacity) into canvas
   ctx.putImageData(tempImageData, 0, 0);
+
+
 
   // then fill whole image with color (after that shadow is colored)
   ctx.save();

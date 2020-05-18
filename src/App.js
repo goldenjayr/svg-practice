@@ -92,6 +92,10 @@ function App() {
     background: generateRandomColor()
   })
 
+  const [coords, setCoords] = useState({
+    x: 0,
+    y: 0
+  })
   const [svg, setSvg] = useState()
   const [pic, setPic] = useState()
 
@@ -123,17 +127,17 @@ function App() {
 
   return (
     <div className='App'>
-      <Stage width={window.innerWidth / 2} height={window.innerHeight / 2}>
+      <Stage width={window.innerWidth} height={window.innerHeight}>
         <Layer>
           <KonvaImage
             image={onepieceImage}
             opacity={0.05}
           />
         </Layer>
-        {/* <Layer>
-          <ShirtComponent />
-        </Layer> */}
-        <OutlineComponents />
+        <Layer>
+          <ShirtComponent coords={coords} />
+        </Layer>
+        {/* <OutlineComponents coords={coords} setCoords={setCoords} /> */}
       </Stage>
       <Stage width={window.innerWidth / 2} height={window.innerHeight / 2}>
         <Layer clearBeforeDraw>
