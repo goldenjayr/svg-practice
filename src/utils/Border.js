@@ -20,6 +20,7 @@ function removeTransparency(canvas) {
 }
 
 export function Border(imageData) {
+  console.log("Border -> imageData", imageData)
   var nPixels = imageData.data.length;
   var size = this.getAttr('borderSize') || 0;
 

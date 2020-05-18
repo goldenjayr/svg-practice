@@ -1,5 +1,5 @@
+// Main Libraries
 import React, { useState, useRef, useEffect } from 'react'
-import './App.css'
 import {
   Stage,
   Layer,
@@ -7,14 +7,26 @@ import {
   Image as KonvaImage,
 } from 'react-konva'
 import Konva from 'konva'
+
+// CSS Imports
+import './App.css'
+
+// SvG Imports
 import { ReactComponent as Pattern } from './i-like-food.svg'
 import Logo from './logo.svg'
-import useImage from 'use-image'
+
+// Image Imports
+import onepiece from './onepiece.jpg'
+
+// Component Imports
 import Swatch from './components/Swatch'
+import ShirtComponent from './components/ShirtComponent'
+import OutlineComponents from './components/OutlineComponent'
+
+// Utils Imports
+import useImage from 'use-image'
 import htmlToImage from 'html-to-image'
 import { v4 as uuid } from 'uuid'
-import ShirtComponent from './components/ShirtComponent'
-import onepiece from './onepiece.jpg'
 
 
 function generateRandomColor() {
@@ -118,9 +130,10 @@ function App() {
             opacity={0.05}
           />
         </Layer>
-        <Layer>
+        {/* <Layer>
           <ShirtComponent />
-        </Layer>
+        </Layer> */}
+        <OutlineComponents />
       </Stage>
       <Stage width={window.innerWidth / 2} height={window.innerHeight / 2}>
         <Layer clearBeforeDraw>

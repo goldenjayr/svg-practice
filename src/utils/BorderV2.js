@@ -21,6 +21,7 @@ function removeTransparency(canvas) {
 }
 
 export function Border(imageData) {
+  console.log("Border -> imageData", imageData)
   var nPixels = imageData.data.length;
 
   var ratio = this._cache.canvas.scene.pixelRatio;
